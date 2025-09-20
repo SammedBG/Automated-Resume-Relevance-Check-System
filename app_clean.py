@@ -33,33 +33,21 @@ except ImportError as e:
     COMPONENTS_AVAILABLE = False
 
 def apply_custom_css():
-    """Apply simple black and white styling without animations"""
+    """Apply logical black and white styling based on UI elements"""
     st.markdown("""
     <style>
-    /* Main app styling - Clean white background */
+    /* ===== MAIN APP BACKGROUND ===== */
     .stApp {
         background: #ffffff;
         font-family: Arial, sans-serif;
-        color: #000000;
     }
     
-    /* Ensure all text is black by default */
-    body, p, div, span, h1, h2, h3, h4, h5, h6 {
-        color: #000000 !important;
-    }
-    
-    /* Override for header only */
-    .main-header h1, .main-header p {
-        color: white !important;
-    }
-    
-    /* Header styling - Simple black header */
+    /* ===== HEADER SECTION (BLACK BACKGROUND) ===== */
     .main-header {
         background: #000000;
         padding: 2rem;
         border-radius: 10px;
         margin-bottom: 2rem;
-        color: white;
         text-align: center;
         border: 2px solid #000000;
     }
@@ -77,134 +65,124 @@ def apply_custom_css():
         color: white !important;
     }
     
-    /* Only make header text white */
-    .main-header h1 {
-        color: white !important;
-    }
-    
-    .main-header p {
-        color: white !important;
-    }
-    
-    /* Sidebar styling - Simple white */
+    /* ===== SIDEBAR (WHITE BACKGROUND) ===== */
     .stSidebar {
         background: #ffffff;
         border-right: 2px solid #000000;
-        color: #000000;
     }
     
-    /* Ensure sidebar text is black */
-    .stSidebar p, .stSidebar div, .stSidebar span, .stSidebar h1, .stSidebar h2, .stSidebar h3 {
+    .stSidebar .stMarkdown {
         color: #000000 !important;
     }
     
-    /* Main content area text */
+    .stSidebar .stSelectbox label {
+        color: #000000 !important;
+    }
+    
+    .stSidebar .stRadio label {
+        color: #000000 !important;
+    }
+    
+    /* ===== MAIN CONTENT AREA (WHITE BACKGROUND) ===== */
     .main .block-container {
-        color: #000000;
-    }
-    
-    .main .block-container p, .main .block-container div, .main .block-container span {
-        color: #000000 !important;
-    }
-    
-    /* Streamlit specific text elements */
-    .stMarkdown, .stText, .stSelectbox label, .stTextInput label, .stTextArea label {
-        color: #000000 !important;
-    }
-    
-    .stMarkdown p, .stMarkdown div, .stMarkdown span {
-        color: #000000 !important;
-    }
-    
-    /* Ensure all Streamlit text is black */
-    .stApp .stMarkdown, .stApp .stText, .stApp .stSelectbox, .stApp .stTextInput, .stApp .stTextArea {
-        color: #000000 !important;
-    }
-    
-    /* Card styling - Simple white cards with black borders */
-    .metric-card {
-        background: #ffffff;
-        padding: 1rem;
-        border-radius: 5px;
-        border: 2px solid #000000;
-        margin: 0.5rem 0;
-    }
-    
-    .success-card {
-        background: #ffffff;
-        border: 2px solid #000000;
-        border-radius: 5px;
-        padding: 1rem;
-        margin: 1rem 0;
-    }
-    
-    /* Progress bar styling - Simple black */
-    .stProgress > div > div > div > div {
-        background: #000000;
-    }
-    
-    /* Button styling - Simple black buttons */
-    .stButton > button {
-        background: #000000;
-        color: white;
-        border: 2px solid #000000;
-        border-radius: 5px;
-        padding: 0.5rem 1rem;
-        font-weight: bold;
-    }
-    
-    .stButton > button:hover {
         background: #ffffff;
         color: #000000;
     }
     
-    /* File uploader styling - Simple white with black border */
-    .stFileUploader > div {
-        background: #ffffff;
-        border: 2px dashed #000000;
-        border-radius: 5px;
-        padding: 1rem;
+    /* ===== STREAMLIT TEXT ELEMENTS (BLACK TEXT) ===== */
+    .stMarkdown {
+        color: #000000 !important;
     }
     
-    /* Input styling - Simple white inputs */
-    .stTextInput > div > div > input,
-    .stTextArea > div > div > textarea,
-    .stSelectbox > div > div {
-        background: #ffffff;
-        border: 2px solid #000000;
-        border-radius: 5px;
+    .stMarkdown p {
+        color: #000000 !important;
     }
     
-    /* Tab styling - Simple white tabs */
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+        color: #000000 !important;
+    }
+    
+    /* ===== FORM ELEMENTS (BLACK TEXT) ===== */
+    .stTextInput label, .stTextArea label, .stSelectbox label, .stFileUploader label {
+        color: #000000 !important;
+    }
+    
+    .stTextInput input, .stTextArea textarea, .stSelectbox select {
+        color: #000000 !important;
+        background: #ffffff !important;
+        border: 2px solid #000000 !important;
+    }
+    
+    /* ===== BUTTONS (BLACK BACKGROUND, WHITE TEXT) ===== */
+    .stButton button {
+        background: #000000 !important;
+        color: white !important;
+        border: 2px solid #000000 !important;
+        border-radius: 5px !important;
+    }
+    
+    .stButton button:hover {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 2px solid #000000 !important;
+    }
+    
+    /* ===== TABS (WHITE BACKGROUND, BLACK TEXT) ===== */
     .stTabs [data-baseweb="tab-list"] {
-        background: #ffffff;
-        border: 2px solid #000000;
+        background: #ffffff !important;
+        border: 2px solid #000000 !important;
     }
     
     .stTabs [data-baseweb="tab"] {
-        color: #000000;
+        color: #000000 !important;
+        background: #ffffff !important;
     }
     
     .stTabs [aria-selected="true"] {
-        background: #000000;
-        color: white;
+        background: #000000 !important;
+        color: white !important;
     }
     
-    /* Expander styling - Simple white */
+    /* ===== CARDS AND CONTAINERS (WHITE BACKGROUND, BLACK TEXT) ===== */
+    .metric-card, .success-card, .metric-container {
+        background: #ffffff !important;
+        border: 2px solid #000000 !important;
+        color: #000000 !important;
+    }
+    
+    .metric-card p, .success-card p, .metric-container p {
+        color: #000000 !important;
+    }
+    
+    /* ===== ALERT MESSAGES (KEEP STREAMLIT DEFAULTS) ===== */
+    .stAlert {
+        border: 2px solid #000000 !important;
+    }
+    
+    /* ===== FILE UPLOADER (WHITE BACKGROUND, BLACK BORDER) ===== */
+    .stFileUploader > div {
+        background: #ffffff !important;
+        border: 2px dashed #000000 !important;
+    }
+    
+    /* ===== PROGRESS BAR (BLACK PROGRESS) ===== */
+    .stProgress > div > div > div > div {
+        background: #000000 !important;
+    }
+    
+    /* ===== EXPANDERS (WHITE BACKGROUND, BLACK TEXT) ===== */
     .streamlit-expanderHeader {
-        background: #ffffff;
-        border: 2px solid #000000;
+        background: #ffffff !important;
+        border: 2px solid #000000 !important;
+        color: #000000 !important;
     }
     
-    /* Metric styling - Simple white containers */
-    .metric-container {
-        background: #ffffff;
-        padding: 1rem;
-        border: 2px solid #000000;
-        text-align: center;
+    .streamlit-expanderContent {
+        background: #ffffff !important;
+        color: #000000 !important;
     }
     
-    /* Simple scrollbar */
+    /* ===== SCROLLBAR (BLACK SCROLLBAR) ===== */
     ::-webkit-scrollbar {
         width: 8px;
     }
