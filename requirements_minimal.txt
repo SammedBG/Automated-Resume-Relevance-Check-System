@@ -1,0 +1,14 @@
+# Minimal requirements for deployment - guaranteed to work
+streamlit
+pandas
+numpy
+scikit-learn
+sentence-transformers
+spacy
+nltk
+fuzzywuzzy
+python-levenshtein
+pymupdf
+pdfplumber
+python-docx
+pydantic
