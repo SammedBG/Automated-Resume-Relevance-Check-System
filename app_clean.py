@@ -109,6 +109,33 @@ def apply_custom_css():
         color: white !important;
     }
     
+    /* Override for any element with black background */
+    [style*="background: #000000"] *,
+    [style*="background:#000000"] * {
+        color: white !important;
+    }
+    
+    /* Specific overrides for black background elements */
+    div[style*="background: #000000"],
+    div[style*="background:#000000"] {
+        color: white !important;
+    }
+    
+    div[style*="background: #000000"] *,
+    div[style*="background:#000000"] * {
+        color: white !important;
+    }
+    
+    /* Specific classes for black background elements */
+    .black-bg, .processing-status, .success-message {
+        background: #000000 !important;
+        color: white !important;
+    }
+    
+    .black-bg *, .processing-status *, .success-message * {
+        color: white !important;
+    }
+    
     /* Streamlit specific overrides */
     .stMarkdown, .stMarkdown p, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
         color: #000000 !important;
@@ -301,8 +328,8 @@ def main():
     # Simple header
     st.markdown("""
     <div class="main-header">
-        <h1>🎯 Resume Relevance Check System</h1>
-        <p>AI-powered resume evaluation and gap analysis</p>
+        <h1 style="color: white !important;">🎯 Resume Relevance Check System</h1>
+        <p style="color:white" >AI-powered resume evaluation and gap analysis</p>
     </div>
     """, unsafe_allow_html=True)
     
