@@ -4,7 +4,13 @@ from docx import Document
 import spacy
 import nltk
 from fuzzywuzzy import fuzz
-from sklearn.feature_extraction.text import TfidfVectorizer
+# Import with fallback
+try:
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    SKLEARN_AVAILABLE = True
+except ImportError:
+    SKLEARN_AVAILABLE = False
+    TfidfVectorizer = None
 try:
     from sentence_transformers import SentenceTransformer
     SENTENCE_TRANSFORMERS_AVAILABLE = True
@@ -53,7 +59,10 @@ class ResumeProcessor:
         else:
             self.sentence_model = None
         
-        self.tfidf = TfidfVectorizer(stop_words='english', max_features=1000)
+        if SKLEARN_AVAILABLE:
+            self.tfidf = TfidfVectorizer(stop_words='english', max_features=1000)
+        else:
+            self.tfidf = None
     
     def extract_text_from_file(self, file) -> str:
         """Extract text from uploaded file"""
@@ -302,6 +311,10 @@ class ResumeProcessor:
     
     def _enhanced_tfidf_similarity(self, text1: str, text2: str) -> float:
         """Enhanced TF-IDF similarity with better preprocessing"""
+        if not SKLEARN_AVAILABLE:
+            # Fallback to simple word overlap if scikit-learn is not available
+            return self._simple_word_overlap(text1, text2)
+            
         try:
             # Preprocess texts
             text1_clean = self.clean_text(text1.lower())
@@ -331,7 +344,35 @@ class ResumeProcessor:
             
         except Exception as e:
             print(f"Enhanced TF-IDF similarity failed: {e}")
-            return 0.2  # Return a small positive value instead of 0
+            return self._simple_word_overlap(text1, text2)
+    
+    def _simple_word_overlap(self, text1: str, text2: str) -> float:
+        """Simple word overlap similarity as fallback when scikit-learn is not available"""
+        try:
+            # Clean and tokenize texts
+            words1 = set(self.clean_text(text1.lower()).split())
+            words2 = set(self.clean_text(text2.lower()).split())
+            
+            # Remove common stop words manually
+            stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'must', 'can', 'this', 'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them'}
+            
+            words1 = words1 - stop_words
+            words2 = words2 - stop_words
+            
+            # Calculate Jaccard similarity
+            intersection = len(words1.intersection(words2))
+            union = len(words1.union(words2))
+            
+            if union == 0:
+                return 0.0
+                
+            similarity = intersection / union
+            print(f"Debug: Simple word overlap similarity: {similarity:.3f}")
+            return similarity
+            
+        except Exception as e:
+            print(f"Simple word overlap failed: {e}")
+            return 0.0
     
     def _tfidf_similarity(self, text1: str, text2: str) -> float:
         """Legacy TF-IDF similarity method"""
