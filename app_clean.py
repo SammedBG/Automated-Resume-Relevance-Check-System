@@ -89,24 +89,115 @@ def apply_custom_css():
         color: #000000;
     }
     
-    /* ===== STREAMLIT TEXT ELEMENTS (BLACK TEXT) ===== */
-    .stMarkdown {
+    /* ===== FORCE ALL TEXT TO BE BLACK ===== */
+    * {
         color: #000000 !important;
     }
     
-    .stMarkdown p {
+    /* Override for header only */
+    .main-header * {
+        color: white !important;
+    }
+    
+    /* Override for buttons */
+    .stButton button {
+        color: white !important;
+    }
+    
+    /* Override for selected tabs */
+    .stTabs [aria-selected="true"] {
+        color: white !important;
+    }
+    
+    /* Streamlit specific overrides */
+    .stMarkdown, .stMarkdown p, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
         color: #000000 !important;
     }
     
-    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+    /* Force all labels to be black */
+    label, .stSelectbox label, .stTextInput label, .stTextArea label, .stRadio label, .stFileUploader label {
+        color: #000000 !important;
+    }
+    
+    /* Force all text inputs to have black text */
+    input, textarea, select {
+        color: #000000 !important;
+    }
+    
+    /* Target specific Streamlit elements that are showing as light gray */
+    .stRadio > label, .stRadio > div > label {
+        color: #000000 !important;
+    }
+    
+    .stSelectbox > label, .stSelectbox > div > label {
+        color: #000000 !important;
+    }
+    
+    .stTextInput > label, .stTextInput > div > label {
+        color: #000000 !important;
+    }
+    
+    .stTextArea > label, .stTextArea > div > label {
+        color: #000000 !important;
+    }
+    
+    .stFileUploader > label, .stFileUploader > div > label {
+        color: #000000 !important;
+    }
+    
+    /* Force all div and span text to be black */
+    div, span, p, h1, h2, h3, h4, h5, h6 {
+        color: #000000 !important;
+    }
+    
+    /* Override Streamlit's default light gray text */
+    .stApp div, .stApp span, .stApp p {
+        color: #000000 !important;
+    }
+    
+    /* Target the specific elements causing issues */
+    .stTabs [data-baseweb="tab"] {
+        color: #000000 !important;
+    }
+    
+    .stTabs [data-baseweb="tab"] span {
+        color: #000000 !important;
+    }
+    
+    /* Target Streamlit's specific light gray text classes */
+    .stApp [data-testid="stMarkdownContainer"] {
+        color: #000000 !important;
+    }
+    
+    .stApp [data-testid="stMarkdownContainer"] p {
+        color: #000000 !important;
+    }
+    
+    .stApp [data-testid="stMarkdownContainer"] h1,
+    .stApp [data-testid="stMarkdownContainer"] h2,
+    .stApp [data-testid="stMarkdownContainer"] h3,
+    .stApp [data-testid="stMarkdownContainer"] h4,
+    .stApp [data-testid="stMarkdownContainer"] h5,
+    .stApp [data-testid="stMarkdownContainer"] h6 {
+        color: #000000 !important;
+    }
+    
+    /* Force all text in the main content area to be black */
+    .main .block-container * {
+        color: #000000 !important;
+    }
+    
+    /* Override for header */
+    .main .block-container .main-header * {
+        color: white !important;
+    }
+    
+    /* Force sidebar text to be black */
+    .stSidebar * {
         color: #000000 !important;
     }
     
     /* ===== FORM ELEMENTS (BLACK TEXT) ===== */
-    .stTextInput label, .stTextArea label, .stSelectbox label, .stFileUploader label {
-        color: #000000 !important;
-    }
-    
     .stTextInput input, .stTextArea textarea, .stSelectbox select {
         color: #000000 !important;
         background: #ffffff !important;
