@@ -70,6 +70,23 @@ def apply_custom_css():
         color: white !important;
     }
     
+    .main-header h1, .main-header p, .main-header span {
+        color: white !important;
+    }
+    
+    /* Force white text in header */
+    div.main-header {
+        color: white !important;
+    }
+    
+    div.main-header h1 {
+        color: white !important;
+    }
+    
+    div.main-header p {
+        color: white !important;
+    }
+    
     /* Sidebar styling - Simple white */
     .stSidebar {
         background: #ffffff;
@@ -184,16 +201,11 @@ def main():
     """Enhanced main application"""
     apply_custom_css()
     
-    # Modern attractive header
+    # Simple header
     st.markdown("""
-    <div class="main-header floating-element">
-        <h1 style="color: white !important;">🎯 Resume Relevance Check System</h1>
-        <p style="color: white !important;">AI-powered resume evaluation and gap analysis</p>
-        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-            <span style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; color: white !important;">✨ Smart Analysis</span>
-            <span style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; color: white !important;">🚀 Fast Processing</span>
-            <span style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; color: white !important;">📊 Detailed Reports</span>
-        </div>
+    <div class="main-header">
+        <h1>🎯 Resume Relevance Check System</h1>
+        <p>AI-powered resume evaluation and gap analysis</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -441,7 +453,7 @@ def upload_page():
             
             with col1:
                 st.markdown(f"""
-                <div class="metric-card floating-element">
+                <div class="metric-card ">
                     <div style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
                         <strong style="color: #000000;">Mode</strong><br>
@@ -452,7 +464,7 @@ def upload_page():
             
             with col2:
                 st.markdown(f"""
-                <div class="metric-card floating-element">
+                <div class="metric-card ">
                     <div style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚖️</div>
                         <strong style="color: #000000;">Weights</strong><br>
@@ -464,7 +476,7 @@ def upload_page():
             with col3:
                 estimated_time = len(uploaded_resumes) * 3
                 st.markdown(f"""
-                <div class="metric-card floating-element">
+                <div class="metric-card ">
                     <div style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏱️</div>
                         <strong style="color: #000000;">Est. Time</strong><br>
@@ -475,7 +487,7 @@ def upload_page():
             
             with col4:
                 st.markdown(f"""
-                <div class="metric-card floating-element">
+                <div class="metric-card ">
                     <div style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;">📄</div>
                         <strong style="color: #000000;">Resumes</strong><br>
@@ -733,7 +745,7 @@ def process_resumes(resumes, job_description):
             col1, col2, col3, col4 = st.columns(4)
             with col1:
                 st.markdown(f"""
-                <div class="metric-container floating-element">
+                <div class="metric-container ">
                     <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
                     <strong style="color: #000000; font-size: 1.1rem;">Total Processed</strong><br>
                     <span style="font-size: 2rem; font-weight: 700; color: #000000;">{len(results)}</span>
@@ -742,7 +754,7 @@ def process_resumes(resumes, job_description):
             with col2:
                 high_count = len([r for r in results if r.get('verdict') == 'High'])
                 st.markdown(f"""
-                <div class="metric-container floating-element">
+                <div class="metric-container ">
                     <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎯</div>
                     <strong style="color: #000000; font-size: 1.1rem;">High Suitability</strong><br>
                     <span style="font-size: 2rem; font-weight: 700; color: #000000;">{high_count}</span>
@@ -751,7 +763,7 @@ def process_resumes(resumes, job_description):
             with col3:
                 avg_score = sum(r.get('final_score', 0) for r in results) / len(results)
                 st.markdown(f"""
-                <div class="metric-container floating-element">
+                <div class="metric-container ">
                     <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⭐</div>
                     <strong style="color: #000000; font-size: 1.1rem;">Average Score</strong><br>
                     <span style="font-size: 2rem; font-weight: 700; color: #000000;">{avg_score:.3f}</span>
@@ -759,7 +771,7 @@ def process_resumes(resumes, job_description):
                 """, unsafe_allow_html=True)
             with col4:
                 st.markdown(f"""
-                <div class="metric-container floating-element">
+                <div class="metric-container ">
                     <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
                     <strong style="color: #000000; font-size: 1.1rem;">Processing Time</strong><br>
                     <span style="font-size: 2rem; font-weight: 700; color: #000000;">{total_time:.1f}s</span>
