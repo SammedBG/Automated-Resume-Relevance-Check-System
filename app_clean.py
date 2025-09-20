@@ -33,183 +33,111 @@ except ImportError as e:
     COMPONENTS_AVAILABLE = False
 
 def apply_custom_css():
-    """Apply clean white and black styling with proper icon styling"""
+    """Apply simple black and white styling without animations"""
     st.markdown("""
     <style>
-    /* Import Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
     /* Main app styling - Clean white background */
     .stApp {
         background: #ffffff;
-        font-family: 'Inter', sans-serif;
+        font-family: Arial, sans-serif;
     }
     
-    /* Header styling - Clean black header */
+    /* Header styling - Simple black header */
     .main-header {
         background: #000000;
-        padding: 3rem 2rem;
-        border-radius: 20px;
+        padding: 2rem;
+        border-radius: 10px;
         margin-bottom: 2rem;
         color: white;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        position: relative;
-        overflow: hidden;
-        border: 2px solid #e0e0e0;
+        border: 2px solid #000000;
     }
     
-    .main-header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-        pointer-events: none;
+    .main-header h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 0;
+        color: white !important;
     }
     
-     .main-header h1 {
-         font-size: 3rem;
-         font-weight: 700;
-         margin: 0;
-         color: white !important;
-         text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-         position: relative;
-         z-index: 1;
-     }
-     
-     .main-header p {
-         font-size: 1.2rem;
-         font-weight: 300;
-         margin: 0.5rem 0 0 0;
-         color: white !important;
-         opacity: 0.9;
-         position: relative;
-         z-index: 1;
-     }
-     
-     .main-header * {
-         color: white !important;
-     }
+    .main-header p {
+        font-size: 1.1rem;
+        margin: 0.5rem 0 0 0;
+        color: white !important;
+    }
     
-    /* Sidebar styling - Clean white */
+    .main-header * {
+        color: white !important;
+    }
+    
+    /* Sidebar styling - Simple white */
     .stSidebar {
         background: #ffffff;
-        border-right: 2px solid #e0e0e0;
+        border-right: 2px solid #000000;
     }
     
-    /* Card styling - Clean white cards with black borders */
+    /* Card styling - Simple white cards with black borders */
     .metric-card {
         background: #ffffff;
-        padding: 1.5rem;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        border: 2px solid #e0e0e0;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .metric-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        border-color: #000000;
+        padding: 1rem;
+        border-radius: 5px;
+        border: 2px solid #000000;
+        margin: 0.5rem 0;
     }
     
     .success-card {
         background: #ffffff;
         border: 2px solid #000000;
-        border-radius: 15px;
-        padding: 1.5rem;
+        border-radius: 5px;
+        padding: 1rem;
         margin: 1rem 0;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        animation: slideIn 0.5s ease-out;
     }
     
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    /* Progress bar styling - Black progress bar */
+    /* Progress bar styling - Simple black */
     .stProgress > div > div > div > div {
         background: #000000;
-        border-radius: 10px;
     }
     
-    /* Button styling - Black buttons with white text */
+    /* Button styling - Simple black buttons */
     .stButton > button {
         background: #000000;
         color: white;
         border: 2px solid #000000;
-        border-radius: 12px;
-        padding: 0.75rem 2rem;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        font-weight: bold;
     }
     
     .stButton > button:hover {
         background: #ffffff;
         color: #000000;
-        border-color: #000000;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
     
-    /* File uploader styling - Clean white with black border */
+    /* File uploader styling - Simple white with black border */
     .stFileUploader > div {
         background: #ffffff;
         border: 2px dashed #000000;
-        border-radius: 15px;
-        padding: 2rem;
-        transition: all 0.3s ease;
+        border-radius: 5px;
+        padding: 1rem;
     }
     
-    .stFileUploader > div:hover {
-        border-color: #333333;
-        background: #f8f8f8;
-        border-style: solid;
-    }
-    
-    /* Input styling - Clean white inputs with black borders */
+    /* Input styling - Simple white inputs */
     .stTextInput > div > div > input,
     .stTextArea > div > div > textarea,
     .stSelectbox > div > div {
         background: #ffffff;
-        border: 2px solid #e0e0e0;
-        border-radius: 10px;
-        transition: all 0.3s ease;
+        border: 2px solid #000000;
+        border-radius: 5px;
     }
     
-    .stTextInput > div > div > input:focus,
-    .stTextArea > div > div > textarea:focus,
-    .stSelectbox > div > div:focus-within {
-        border-color: #000000;
-        box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
-    }
-    
-    /* Tab styling - Clean white tabs with black selection */
+    /* Tab styling - Simple white tabs */
     .stTabs [data-baseweb="tab-list"] {
         background: #ffffff;
-        border-radius: 15px;
-        padding: 0.5rem;
-        border: 2px solid #e0e0e0;
+        border: 2px solid #000000;
     }
     
     .stTabs [data-baseweb="tab"] {
-        background: transparent;
         color: #000000;
-        border-radius: 10px;
-        font-weight: 600;
-        transition: all 0.3s ease;
     }
     
     .stTabs [aria-selected="true"] {
@@ -217,151 +145,39 @@ def apply_custom_css():
         color: white;
     }
     
-    /* Expander styling - Clean white expanders */
+    /* Expander styling - Simple white */
     .streamlit-expanderHeader {
         background: #ffffff;
-        border: 2px solid #e0e0e0;
-        border-radius: 10px;
+        border: 2px solid #000000;
     }
     
-    /* Metric styling - Clean white metric containers */
+    /* Metric styling - Simple white containers */
     .metric-container {
         background: #ffffff;
-        padding: 1.5rem;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        border: 2px solid #e0e0e0;
+        padding: 1rem;
+        border: 2px solid #000000;
         text-align: center;
-        transition: transform 0.3s ease;
     }
     
-    .metric-container:hover {
-        transform: translateY(-3px);
-        border-color: #000000;
-    }
-    
-    /* Loading animation - Black spinner */
-    .loading-spinner {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 3px solid #e0e0e0;
-        border-radius: 50%;
-        border-top-color: #000000;
-        animation: spin 1s ease-in-out infinite;
-    }
-    
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-    
-    /* Success animation - Black checkmark */
-    .success-checkmark {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #000000;
-        position: relative;
-        animation: checkmark 0.6s ease-in-out;
-    }
-    
-    .success-checkmark::after {
-        content: '✓';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-weight: bold;
-    }
-    
-    @keyframes checkmark {
-        0% { transform: scale(0); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-    }
-    
-    /* Floating elements */
-    .floating-element {
-        animation: float 3s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-    }
-    
-    /* Custom scrollbar - Black scrollbar */
+    /* Simple scrollbar */
     ::-webkit-scrollbar {
         width: 8px;
     }
     
     ::-webkit-scrollbar-track {
         background: #f0f0f0;
-        border-radius: 10px;
     }
     
     ::-webkit-scrollbar-thumb {
         background: #000000;
-        border-radius: 10px;
+        border-radius: 4px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
         background: #333333;
     }
+    }
     </style>
-    
-    <script>
-    // Add interactive features
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add click animations to buttons
-        const buttons = document.querySelectorAll('.stButton button');
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 150);
-            });
-        });
-        
-        // Add hover effects to cards
-        const cards = document.querySelectorAll('.metric-card, .success-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.02)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-        
-        // Add typing animation to status text
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-        
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    });
-    </script>
     """, unsafe_allow_html=True)
 
 def main():
@@ -480,7 +296,7 @@ def main():
                     <div style="margin-top: 1rem;">
                         <p style="margin: 0; font-size: 0.8rem; color: #000000;">Success Rate</p>
                         <div style="background: #e0e0e0; height: 6px; border-radius: 3px; overflow: hidden;">
-                            <div style="background: #000000; height: 100%; width: {success_rate}%; transition: width 0.3s ease;"></div>
+                            <div style="background: #000000; height: 100%; width: {success_rate}%;"></div>
                         </div>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: #000000; text-align: center;">{success_rate:.1f}%</p>
                     </div>
@@ -675,12 +491,10 @@ def upload_page():
             with col2:
                 st.markdown("""
                 <div style="text-align: center; margin: 2rem 0;">
-                    <button onclick="this.style.transform='scale(0.95)'; setTimeout(() => this.style.transform='scale(1)', 150);" 
-                            style="background: #000000; 
-                                   color: white; border: 2px solid #000000; border-radius: 15px; 
-                                   padding: 1rem 3rem; font-size: 1.2rem; font-weight: 600; 
-                                   cursor: pointer; transition: all 0.3s ease; 
-                                   box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                    <button style="background: #000000; 
+                                   color: white; border: 2px solid #000000; border-radius: 5px; 
+                                   padding: 1rem 2rem; font-size: 1.1rem; font-weight: bold; 
+                                   cursor: pointer;">
                         🚀 Start Processing
                     </button>
                 </div>
