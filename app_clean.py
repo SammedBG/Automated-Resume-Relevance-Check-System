@@ -40,6 +40,17 @@ def apply_custom_css():
     .stApp {
         background: #ffffff;
         font-family: Arial, sans-serif;
+        color: #000000;
+    }
+    
+    /* Ensure all text is black by default */
+    body, p, div, span, h1, h2, h3, h4, h5, h6 {
+        color: #000000 !important;
+    }
+    
+    /* Override for header only */
+    .main-header h1, .main-header p {
+        color: white !important;
     }
     
     /* Header styling - Simple black header */
@@ -66,24 +77,12 @@ def apply_custom_css():
         color: white !important;
     }
     
-    .main-header * {
+    /* Only make header text white */
+    .main-header h1 {
         color: white !important;
     }
     
-    .main-header h1, .main-header p, .main-header span {
-        color: white !important;
-    }
-    
-    /* Force white text in header */
-    div.main-header {
-        color: white !important;
-    }
-    
-    div.main-header h1 {
-        color: white !important;
-    }
-    
-    div.main-header p {
+    .main-header p {
         color: white !important;
     }
     
@@ -91,6 +90,35 @@ def apply_custom_css():
     .stSidebar {
         background: #ffffff;
         border-right: 2px solid #000000;
+        color: #000000;
+    }
+    
+    /* Ensure sidebar text is black */
+    .stSidebar p, .stSidebar div, .stSidebar span, .stSidebar h1, .stSidebar h2, .stSidebar h3 {
+        color: #000000 !important;
+    }
+    
+    /* Main content area text */
+    .main .block-container {
+        color: #000000;
+    }
+    
+    .main .block-container p, .main .block-container div, .main .block-container span {
+        color: #000000 !important;
+    }
+    
+    /* Streamlit specific text elements */
+    .stMarkdown, .stText, .stSelectbox label, .stTextInput label, .stTextArea label {
+        color: #000000 !important;
+    }
+    
+    .stMarkdown p, .stMarkdown div, .stMarkdown span {
+        color: #000000 !important;
+    }
+    
+    /* Ensure all Streamlit text is black */
+    .stApp .stMarkdown, .stApp .stText, .stApp .stSelectbox, .stApp .stTextInput, .stApp .stTextArea {
+        color: #000000 !important;
     }
     
     /* Card styling - Simple white cards with black borders */
